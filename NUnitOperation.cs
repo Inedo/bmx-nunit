@@ -81,7 +81,7 @@ namespace Inedo.BuildMasterExtensions.NUnit
             this.LogDebug("Output file: " + outputFilePath);
 
             var args = this.IsNUnit3 
-                ? $"\"{testFilePath}\" --result:nunit2 --result:\"{outputFilePath}\""
+                ? $"\"{testFilePath}\" --result:\"{outputFilePath}\";format=nunit2"
                 : $"\"{testFilePath}\" /xml:\"{outputFilePath}\"";
             
             if (!string.IsNullOrEmpty(this.AdditionalArguments))
@@ -153,7 +153,7 @@ namespace Inedo.BuildMasterExtensions.NUnit
                 }
 
                 if (failures > 0)
-                    this.LogError($"{0} test failures were reported.");
+                    this.LogError($"{failures} test failures were reported.");
             }
             finally
             {
