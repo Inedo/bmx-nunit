@@ -2,15 +2,15 @@
 using System.Web.UI.WebControls;
 using Inedo.BuildMaster.Data;
 using Inedo.BuildMaster.Extensibility.Actions;
-using Inedo.BuildMaster.Web.Controls;
 using Inedo.BuildMaster.Web.Controls.Extensions;
+using Inedo.Web;
 using Inedo.Web.Controls;
 
 namespace Inedo.BuildMasterExtensions.NUnit
 {
     internal sealed class NUnitActionEditor : ActionEditorBase
     {
-        private SourceControlFileFolderPicker txtExePath;
+        private FileBrowserTextBox txtExePath;
         private ValidatingTextBox txtTestFile;
         private ValidatingTextBox txtGroupName;
         private ValidatingTextBox txtAdditionalArguments;
@@ -27,9 +27,9 @@ namespace Inedo.BuildMasterExtensions.NUnit
                 deployable = DB.Applications_GetDeployable(this.DeployableId).FirstOrDefault();
             }
 
-            this.txtExePath = new SourceControlFileFolderPicker
+            this.txtExePath = new FileBrowserTextBox
             {
-                DisplayMode = SourceControlBrowser.DisplayModes.FoldersAndFiles,
+                IncludeFiles = true,
                 ServerId = this.ServerId,
                 DefaultText = "default for selected configuration"
             };
